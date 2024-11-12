@@ -1,7 +1,17 @@
+"use client";
+import Dashboard from "@/components/Dashboard";
+import store from "@/store/store";
+import { Provider } from "react-redux";
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="tr">
-      <body>{children}</body>
-    </html>
+    <Provider store={store}>
+      <html lang="tr">
+        <body>
+          <Dashboard />
+          <main>{children}</main>
+        </body>
+      </html>
+    </Provider>
   );
 }
