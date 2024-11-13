@@ -1,5 +1,5 @@
 import { getSingleProduct } from "@/actions/productsAPI";
-import ProductDetail from "@/components/Product/ProductDetail";
+import ProductDetail from "@/components/ProductDetail/ProductDetail";
 
 export default async function Page({ params }) {
   const { productId } = params;
