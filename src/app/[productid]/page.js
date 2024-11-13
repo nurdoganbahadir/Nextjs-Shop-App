@@ -1,9 +1,12 @@
 import React from 'react'
 
-const page = () => {
+const ProductDetails = ({params}) => {
+
+
+
   return (
-    <div>page</div>
+    <div>{params.productid}</div>
   )
 }
 
-export default page
+export default ProductDetails;

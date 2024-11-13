@@ -1,5 +1,4 @@
 "use client";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -13,12 +12,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { useEffect, useState } from "react";
-import useProductRequests from "@/hooks/useProductRequests";
-import { useSelector } from "react-redux";
 import { styled, alpha } from "@mui/material/styles";
+import { useState } from "react";
+import { CssBaseline } from "@mui/material";
 
-const drawerWidth = 220;
+const drawerWidth = 240;
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,16 +60,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Dashboard(props) {
-  const { window } = props;
+function ResponsiveDrawer({ children, window }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-
-  const { getProduct } = useProductRequests();
-  const { products } = useSelector((state) => state.product);
-  useEffect(() => {
-    getProduct();
-  }, []);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -92,23 +83,25 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <List>
-        {["Beauty", "Fragrances", "Furniture", "Groceries"].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {["Beauty", "Fragrances", "Furniture", "Groceries"].map(
+          (text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          )
+        )}
       </List>
     </div>
   );
 
-  // Remove this const when copying and pasting into your project.
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
@@ -145,13 +138,9 @@ function Dashboard(props) {
       </AppBar>
       <Box
         component="nav"
-        sx={{
-          width: { sm: drawerWidth },
-          flexShrink: { sm: 0 },
-        }}
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
@@ -159,7 +148,7 @@ function Dashboard(props) {
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -188,16 +177,19 @@ function Dashboard(props) {
           {drawer}
         </Drawer>
       </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+        }}
+      >
+        <Toolbar />
+        {children}
+      </Box>
     </Box>
   );
 }
 
-Dashboard.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * Remove this when copying and pasting into your project.
-   */
-  window: PropTypes.func,
-};
-
-export default Dashboard;
+export default ResponsiveDrawer;
