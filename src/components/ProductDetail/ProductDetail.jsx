@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import ProductImages from "./ProductImages";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import ProductDesc from "./ProductDesc";
 import ProductAccordion from "./ProductAccordion";
 

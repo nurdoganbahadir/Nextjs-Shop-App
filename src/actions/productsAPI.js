@@ -3,7 +3,7 @@ const BASE_URL = process.env.BASE_URL;
 
 export const getAllProducts = async () => {
   try {
-    const res = await fetch(BASE_URL, {
+    const res = await fetch(`${BASE_URL}/${"?limit=200"}`, {
       ContentType: "aplication/json",
       method: "GET",
     });

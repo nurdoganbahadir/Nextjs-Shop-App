@@ -1,18 +1,22 @@
 "use client";
-import { Box, Button, Container, Rating, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Rating,
+  TextField,
+  Typography,
+} from "@mui/material";
 import CommentIcon from "@mui/icons-material/Comment";
 import React from "react";
 
 const ProductDesc = ({ product }) => {
-  const discountPrice =
-    product.price + product.price * product.discountPercentage;
-  console.log(discountPrice);
   return (
     <Container
       sx={{
         width: { xs: "100%", md: "50%" },
         maxWidth: "500px",
-        height: { xs: "400px", sm: "448px" },
+        height: { xs: "450px", sm: "448px" },
         position: "relative",
       }}
     >
@@ -26,7 +30,7 @@ const ProductDesc = ({ product }) => {
         sx={{
           fontSize: { xs: "12px", sm: "18px" },
           display: "-webkit-box",
-          WebkitLineClamp: 4, // En fazla 4 satır gösterir
+          WebkitLineClamp: 4,
           WebkitBoxOrient: "vertical",
           overflow: "hidden",
           textOverflow: "ellipsis",
@@ -47,20 +51,23 @@ const ProductDesc = ({ product }) => {
         </Box>
       </Box>
 
-      <Box sx={{ display: "flex", gap: ".5rem" }}>
-        <Typography
-          gutterBottom
-          variant="h4"
-          component="div"
-          sx={{ mt: ".5rem" }}
-        >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "start",
+          alignItems: "center",
+          gap: ".5rem",
+          mt: ".5rem",
+        }}
+      >
+        <Typography gutterBottom variant="h5" component="div">
           ${product.price}
         </Typography>
         <Typography
           gutterBottom
-          variant="h5"
+          variant="h6"
           component="div"
-          sx={{ mt: "1rem", color: "gray", textDecoration: "line-through" }}
+          sx={{ color: "gray", textDecoration: "line-through" }}
         >
           $
           {(product.price + product.price * product.discountPercentage).toFixed(
@@ -70,16 +77,51 @@ const ProductDesc = ({ product }) => {
       </Box>
 
       <Box
-        sx={{ border: "1px solid grey", borderRadius: "5px", padding: "10px" }}
+        sx={{
+          border: "1px solid grey",
+          borderRadius: "5px",
+          padding: "10px",
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "space-between",
+        }}
       >
-        <Typography>
-          Minimum Order Quantity: {product.minimumOrderQuantity}
-        </Typography>
-        <Typography>
-          Stock: {product.stock >= product.minimumOrderQuantity ? "Yes" : "No"}
-        </Typography>
-        <Typography>Return Policy: {product.returnPolicy}</Typography>
+        <Box sx={{ fontSize: "5px" }}>
+          <Typography sx={{ fontSize: "15px" }}>
+            Minimum Order Quantity: {product.minimumOrderQuantity}
+          </Typography>
+          <Typography sx={{ fontSize: "15px" }}>
+            Stock:{" "}
+            {product.stock >= product.minimumOrderQuantity ? "Yes" : "No"}
+          </Typography>
+          <Typography sx={{ fontSize: "15px" }}>
+            Return Policy: {product.returnPolicy}
+          </Typography>
+        </Box>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": {
+              m: { sm: 1 },
+              width: { xs: "100%", sm: "8ch" },
+            },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            id="outlined-basic"
+            label="Piece"
+            variant="outlined"
+            type="number"
+            inputProps={{
+              min: `${product.minimumOrderQuantity}`,
+              max: `${product.stock}`,
+            }}
+          />
+        </Box>
       </Box>
+
       <Button
         sx={{
           width: "100%",

@@ -19,7 +19,7 @@ export default function ProductAccordion({ product }) {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          ÜRÜN ÖZELLİKLERİ
+          PRODUCT PROPERTİES
         </AccordionSummary>
         <AccordionDetails>
           <ProductProperties product={product} />
@@ -31,7 +31,7 @@ export default function ProductAccordion({ product }) {
           aria-controls="panel2-content"
           id="panel2-header"
         >
-          YORUMLAR
+          COMMENTS
         </AccordionSummary>
         <AccordionDetails>
           <Box>

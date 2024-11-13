@@ -28,7 +28,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function ProductProperties({ product }) {
-  console.log(product);
   return (
     <TableContainer component={Paper}>
       <Table aria-label="customized table">
