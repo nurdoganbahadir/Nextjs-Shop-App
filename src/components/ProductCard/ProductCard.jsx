@@ -39,9 +39,28 @@ const ProductCard = ({ product }) => {
         <Typography variant="p" sx={{ color: "gray", fontSize: "13px" }}>
           {product.title}
         </Typography>
-        <Typography variant="body2" sx={{ color: "green", fontSize: "bolder" }}>
-          {product.price} $
-        </Typography>
+        <Box sx={{ display: "flex", gap: ".5rem" }}>
+          <Typography
+            variant="p"
+            sx={{
+              color: "red",
+              textDecoration: "line-through",
+              fontSize: "13px",
+            }}
+          >
+            $
+            {(
+              product.price +
+              product.price * product.discountPercentage
+            ).toFixed(2)}
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ color: "green", fontSize: "bolder" }}
+          >
+            {product.price} $
+          </Typography>
+        </Box>
       </CardContent>
       <Box
         sx={{
@@ -72,7 +91,7 @@ const ProductCard = ({ product }) => {
             "&:hover": { backgroundColor: "green" },
           }}
         >
-          SEPETE EKLE
+          ADD TO CART
         </Button>
       </CardActions>
     </Card>
