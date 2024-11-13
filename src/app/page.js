@@ -1,10 +1,9 @@
 import { getAllProducts } from "@/actions/productsAPI";
-import ProductCard from "@/components/ProductCard/ProductCard";
+import ProductCard from "@/components/Product/ProductCard";
 import { Grid } from "@mui/material";
 
 export default async function Home() {
   const { products } = await getAllProducts();
-  console.log(products);
 
   return (
     <Grid

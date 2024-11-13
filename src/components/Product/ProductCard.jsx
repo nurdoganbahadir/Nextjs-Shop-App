@@ -8,10 +8,18 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import StarIcon from "@mui/icons-material/Star";
 import { Box } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const ProductCard = ({ product }) => {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/${product.id}`); // Ürünün detay sayfasına yönlendir
+  };
+
   return (
     <Card
+      onClick={handleCardClick}
       sx={{
         width: { xs: "49%", sm: "200px" },
         position: "relative",
@@ -61,7 +69,6 @@ const ProductCard = ({ product }) => {
             borderRadius: "5px",
             padding: "5px",
             width: "100%",
-            zIndex: "9999",
             "&:hover": { backgroundColor: "green" },
           }}
         >

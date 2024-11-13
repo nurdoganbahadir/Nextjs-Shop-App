@@ -1,12 +1,10 @@
-import React from 'react'
+import { getSingleProduct } from "@/actions/productsAPI";
+import ProductDetail from "@/components/Product/ProductDetail";
 
-const ProductDetails = ({params}) => {
+export default async function Page({ params }) {
+  const { productId } = params;
 
+  const product = await getSingleProduct(productId);
 
-
-  return (
-    <div>{params.productid}</div>
-  )
+  return <ProductDetail product={product} />;
 }
-
-export default ProductDetails;
