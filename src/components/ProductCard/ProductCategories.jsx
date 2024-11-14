@@ -68,7 +68,7 @@ export default function ProductCategories({
         mb: "1rem",
         display: "flex",
         justifyContent: "center",
-        flexWrap: "wrap", // Ekran küçükse wrap
+        flexWrap: "wrap",
         gap: 1,
       }}
     >
@@ -77,7 +77,7 @@ export default function ProductCategories({
         onClick={handleAllProductsClick}
         sx={{
           fontSize: "12px",
-          flexBasis: { xs: "calc(33.33% - 8px)", sm: "auto" }, // 3 buton küçük ekranda, büyük ekranda otomatik genişlik
+          flexBasis: { xs: "calc(33.33% - 8px)", sm: "auto" },
         }}
       >
         ALL
@@ -171,7 +171,6 @@ export default function ProductCategories({
         Sports
       </Button>
 
-      {/* Popover için aynı mantığı koruyoruz */}
       <Popover
         open={open}
         anchorEl={anchorEl}

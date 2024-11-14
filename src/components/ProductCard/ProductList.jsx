@@ -164,8 +164,8 @@ const ProductList = () => {
             my: "1.5rem",
           }}
         >
-          {currentProducts ? (
-            currentProducts?.map((product) => (
+          {currentProducts.length > 0 ? (
+            currentProducts.map((product, index) => (
               <ProductCard key={product.id} product={product} />
             ))
           ) : (
