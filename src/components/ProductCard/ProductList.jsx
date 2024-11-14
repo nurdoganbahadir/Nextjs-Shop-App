@@ -1,4 +1,5 @@
 "use client";
+import dynamic from "next/dynamic";
 import * as React from "react";
 import { useState, useEffect } from "react";
 import {
@@ -9,13 +10,17 @@ import {
   Box,
   Typography,
   Container,
+  Skeleton,
 } from "@mui/material";
 import ProductCard from "./ProductCard";
 import ProductArrangement from "../ProductDetail/ProductArrangement";
 import ProductCategories from "./ProductCategories";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getAllProducts } from "@/actions/productsAPI";
-import { Loading } from "../Loading";
+
+const DynamicProductCard = dynamic(() => import("./ProductCard"), {
+  ssr: false,
+});
 
 const ProductList = () => {
   const [category, setCategory] = useState("");
@@ -164,13 +169,13 @@ const ProductList = () => {
             my: "1.5rem",
           }}
         >
-          {currentProducts.length > 0 ? (
-            currentProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} />
-            ))
-          ) : (
-            <Loading />
-          )}
+          {currentProducts.length > 0
+            ? currentProducts.map((product) => (
+                <DynamicProductCard key={product.id} product={product} />
+              ))
+            : [...Array(30)].map((_, index) => (
+                <Skeleton key={index} width={211} height={500} />
+              ))}
         </Grid>
       </Container>
 

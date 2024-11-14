@@ -10,8 +10,6 @@ import { useState } from "react";
 import { CssBaseline, FormControl } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const drawerWidth = 240;
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -58,11 +56,11 @@ function DefaultLayout({ children }) {
   const page = searchParams.get("page") || 1;
   const limit = searchParams.get("limit") || 30;
   const [search, setSearch] = useState(searchParams.get("search") || "");
-
   const router = useRouter();
 
-
-
+  const handleClick = () => {
+    router.push("/");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,12 +80,22 @@ function DefaultLayout({ children }) {
           zIndex: "99999999",
         }}
       >
-        <Toolbar>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: { xs: "space-between", sm: "space-around" },
+          }}
+        >
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
+            onClick={handleClick}
+            sx={{
+              display: { xs: "block", sm: "block" },
+              width: "65px",
+              cursor: "pointer",
+            }}
           >
             SHOP
           </Typography>
@@ -111,7 +119,7 @@ function DefaultLayout({ children }) {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: "100%",
         }}
       >
         <Toolbar />

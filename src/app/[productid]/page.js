@@ -2,7 +2,7 @@ import { getSingleProduct } from "@/actions/productsAPI";
 import ProductDetail from "@/components/ProductDetail/ProductDetail";
 
 export async function generateMetadata({ params }) {
-  const { productId } = params;
+  const { productId } = await params;
   const product = await getSingleProduct(productId);
 
   return {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const { productId } = params;
+  const { productId } = await params;
 
   const product = await getSingleProduct(productId);
 
