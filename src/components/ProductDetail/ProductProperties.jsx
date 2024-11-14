@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -21,61 +22,33 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
 export default function ProductProperties({ product }) {
+  const productDetails = [
+    { label: "Brand", value: product.brand },
+    { label: "Weight", value: product.weight },
+    { label: "Width", value: product.dimensions.width },
+    { label: "Height", value: product.dimensions.height },
+    { label: "Depth", value: product.dimensions.depth },
+    { label: "Warranty Information", value: product.warrantyInformation },
+  ];
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="customized table">
         <TableBody>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              Brand
-            </StyledTableCell>
-            <StyledTableCell align="right">{product.brand}</StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              Weight
-            </StyledTableCell>
-            <StyledTableCell align="right">{product.weight}</StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              Width
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              {product.dimensions.width}
-            </StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              Height
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              {product.dimensions.height}
-            </StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              Depth
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              {product.dimensions.depth}
-            </StyledTableCell>
-          </StyledTableRow>
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              Warrant Information
-            </StyledTableCell>
-            <StyledTableCell align="right">
-              {product.warrantyInformation}
-            </StyledTableCell>
-          </StyledTableRow>
+          {productDetails.map((detail, index) => (
+            <StyledTableRow key={index}>
+              <StyledTableCell component="th" scope="row">
+                {detail.label}
+              </StyledTableCell>
+              <StyledTableCell align="right">{detail.value}</StyledTableCell>
+            </StyledTableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>

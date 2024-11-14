@@ -18,6 +18,7 @@ const ProductDesc = ({ product }) => {
         maxWidth: "500px",
         height: { xs: "450px", sm: "448px" },
         position: "relative",
+        p: { xs: 0 },
       }}
     >
       <Typography color="red" sx={{ fontSize: { xs: "20px", sm: "30px" } }}>
@@ -61,7 +62,10 @@ const ProductDesc = ({ product }) => {
         }}
       >
         <Typography gutterBottom variant="h5" component="div">
-          ${product.price}
+          $
+          {((product.price * (100 - product.discountPercentage)) / 100).toFixed(
+            2
+          )}
         </Typography>
         <Typography
           gutterBottom
@@ -69,10 +73,7 @@ const ProductDesc = ({ product }) => {
           component="div"
           sx={{ color: "gray", textDecoration: "line-through" }}
         >
-          $
-          {(product.price + product.price * product.discountPercentage).toFixed(
-            2
-          )}
+          ${product.price}
         </Typography>
       </Box>
 
@@ -102,7 +103,8 @@ const ProductDesc = ({ product }) => {
           component="form"
           sx={{
             "& > :not(style)": {
-              m: { sm: 1 },
+              m: { xs: 0, sm: 1 },
+              mt: { xs: 1 },
               width: { xs: "100%", sm: "8ch" },
             },
           }}
@@ -114,6 +116,7 @@ const ProductDesc = ({ product }) => {
             label="Piece"
             variant="outlined"
             type="number"
+            defaultValue={`${product.minimumOrderQuantity}`}
             inputProps={{
               min: `${product.minimumOrderQuantity}`,
               max: `${product.stock}`,

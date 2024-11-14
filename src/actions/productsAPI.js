@@ -1,14 +1,25 @@
 "use server";
 const BASE_URL = process.env.BASE_URL;
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (page, limit, search) => {
+  let url = `${BASE_URL}/`;
+  const params = new URLSearchParams();
+
+  if (page) params.append("page", page);
+  if (limit) params.append("limit", limit);
+  if (search) params.append("q", search);
+
+  if (params.toString()) url += `search?${params.toString()}`;
+
   try {
-    const res = await fetch(`${BASE_URL}/${"?limit=200"}`, {
+    const res = await fetch(url, {
       ContentType: "aplication/json",
       method: "GET",
     });
 
     const data = await res.json();
+    // console.log("sever->", data);
+    console.log("lıne 22->", url);
 
     if (res.ok) {
       return data;

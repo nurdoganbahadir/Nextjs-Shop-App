@@ -14,14 +14,14 @@ const ProductCard = ({ product }) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`/${product.id}`); // Ürünün detay sayfasına yönlendir
+    router.push(`/${product.id}`);
   };
 
   return (
     <Card
       onClick={handleCardClick}
       sx={{
-        width: { xs: "49%", sm: "200px" },
+        width: { xs: "49%", sm: "211px" },
         position: "relative",
         cursor: "pointer",
         "&:hover": {
@@ -48,17 +48,17 @@ const ProductCard = ({ product }) => {
               fontSize: "13px",
             }}
           >
-            $
-            {(
-              product.price +
-              product.price * product.discountPercentage
-            ).toFixed(2)}
+            ${product.price}
           </Typography>
           <Typography
             variant="body2"
             sx={{ color: "green", fontSize: "bolder" }}
           >
-            {product.price} $
+            $
+            {(
+              (product.price * (100 - product.discountPercentage)) /
+              100
+            ).toFixed(2)}
           </Typography>
         </Box>
       </CardContent>
