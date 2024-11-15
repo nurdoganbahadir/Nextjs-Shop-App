@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 const ProductCard = ({ product }) => {
   const router = useRouter();
 
+  // Karta tıklandığında, ürünün detay sayfasına yönlendirilmesi için kullanılan fonksiyon
   const handleCardClick = () => {
     router.push(`/${product.id}`);
   };

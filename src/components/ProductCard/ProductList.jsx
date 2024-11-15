@@ -22,14 +22,14 @@ const DynamicProductCard = dynamic(() => import("./ProductCard"), {
 });
 
 const ProductList = () => {
-  const [category, setCategory] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 37000]);
-  const [sortOption, setSortOption] = useState("default");
+  const [category, setCategory] = useState(""); //seçilen kategori
+  const [priceRange, setPriceRange] = useState([0, 37000]); // fiyat aralığı
+  const [sortOption, setSortOption] = useState("default"); //sıralama
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filteredProducts, setFilteredProducts] = useState(products); //filtrelenmiş ürünler bu statte tutulur
 
   const router = useRouter();
-  
+
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || 1;
   const limit = searchParams.get("limit") || 200;
@@ -44,15 +44,15 @@ const ProductList = () => {
         limit ?? "30",
         search
       );
-      setProducts(products);
+      setProducts(products); //ürünler state'ye yüklenecek
     })();
-  }, [page, limit, search]);
+  }, [page, limit, search]); // Sayfa, limit veya arama değiştiğinde tekrar çalışır
 
   useEffect(() => {
     router.push(`?${new URLSearchParams({ page, limit, search })}`, {
       scroll: false,
     });
-  }, []);
+  }, []); // Sayfa ilk yüklendiğinde çalışır
 
   useEffect(() => {
     let updatedProducts = [...products];
@@ -68,6 +68,7 @@ const ProductList = () => {
         product.price >= priceRange[0] && product.price <= priceRange[1]
     );
 
+    // Seçilen sıralama seçeneğine göre ürünleri sıralama
     if (sortOption === "popularity") {
       updatedProducts.sort((a, b) => b.rating - a.rating);
     } else if (sortOption === "priceHighToLow") {
@@ -84,8 +85,8 @@ const ProductList = () => {
       );
     }
 
-    setFilteredProducts(updatedProducts);
-  }, [category, priceRange, sortOption, products]);
+    setFilteredProducts(updatedProducts); //filtrelenmiş ürünler burada state'e yükleniyor
+  }, [category, priceRange, sortOption, products]); // Kategori, fiyat aralığı, sıralama veya ürünler değiştiğinde çalışacak
 
   const indexOfLastProduct = page * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -135,6 +136,7 @@ const ProductList = () => {
             }}
           >
             <Typography>Price</Typography>
+            {/* Fiyat aralığı */}
             <Slider
               value={priceRange}
               onChange={(e, newValue) => setPriceRange(newValue)}

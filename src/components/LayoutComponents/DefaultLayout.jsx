@@ -52,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function DefaultLayout({ children }) {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams(); // URL den parametreleri aldım
   const page = searchParams.get("page") || 1;
   const limit = searchParams.get("limit") || 30;
   const [search, setSearch] = useState(searchParams.get("search") || "");
@@ -107,7 +107,7 @@ function DefaultLayout({ children }) {
               </SearchIconWrapper>
               <StyledInputBase
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)} 
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
@@ -123,6 +123,7 @@ function DefaultLayout({ children }) {
         }}
       >
         <Toolbar />
+        {/* alt bileşenler burada gösterilir */}
         {children}
       </Box>
     </Box>
