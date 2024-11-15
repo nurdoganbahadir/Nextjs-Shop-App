@@ -2,9 +2,6 @@
 
 Shop App bir e-ticaret sitesinin demosudur. Ürünleri ana sayfada görüntüleyebilir ve ürünler üzerinde filtreleme işlemleri yapabilirsiniz. Mevcut ürünler kategorilere ayrılmıştır ve ana sayfadan bu kategorilere erişilebilmektedir. Arama kısmı dinamik bir yapıda api isteği gerçekleştirmektedir. SPA yönlendirmesi ile ürün kartına tıklandığında, ilgili ürünün detay sayfasına yönlendirme yapıldı. Detay sayfasında ürün adı, detaylı açıklama, tam boyutlu resim, açılabilir galeri yapısı, fiyat ve diğer özellikler gösterildi. Responsive tasarım uygulandı, hem mobil hem masaüstü cihazlarda uyum sağlandı. Kullanıcı deneyimini geliştirmek için sade bir tasarım benimsendi ve görsel animasyonlar kullanıldı. Kod okunabilirliği ve optimizasyon açısından kodlar modüllere bölündü. Performans ve SEO optimizasyonları Next.js ile birlikte sağlandı. UI framework için MaterialUI tercih edildi. Sayfa yüklenme sürelerinin kontrolü için Lazy Loading uygulandı.
 
-# Live Link of the Project
-
-[Click Me]()
 
 # Kullandığım Teknoloji ve Kütüphaneler
 
@@ -82,6 +79,3 @@ Proje başarıyla çalıştıysa, tarayıcınızda http://localhost:3000 adresin
 
 
 
-# How does my project look
-
-![Redux Toolkit]()
