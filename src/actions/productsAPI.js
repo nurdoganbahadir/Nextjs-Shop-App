@@ -18,8 +18,6 @@ export const getAllProducts = async (page, limit, search) => {
     });
 
     const data = await res.json();
-    // console.log("sever->", data);
-    console.log("lıne 22->", url);
 
     if (res.ok) {
       return data;

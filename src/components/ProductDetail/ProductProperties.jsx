@@ -31,9 +31,9 @@ export default function ProductProperties({ product }) {
   const productDetails = [
     { label: "Brand", value: product.brand },
     { label: "Weight", value: product.weight },
-    { label: "Width", value: product.dimensions.width },
-    { label: "Height", value: product.dimensions.height },
-    { label: "Depth", value: product.dimensions.depth },
+    { label: "Width", value: product.dimensions?.width },
+    { label: "Height", value: product.dimensions?.height },
+    { label: "Depth", value: product.dimensions?.depth },
     { label: "Warranty Information", value: product.warrantyInformation },
   ];
 

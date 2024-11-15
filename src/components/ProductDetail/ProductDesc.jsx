@@ -22,10 +22,10 @@ const ProductDesc = ({ product }) => {
       }}
     >
       <Typography color="red" sx={{ fontSize: { xs: "20px", sm: "30px" } }}>
-        {product.brand}
+        {product?.brand}
       </Typography>
       <Typography sx={{ fontSize: { xs: "15px", sm: "25px" } }}>
-        {product.title}
+        {product?.title}
       </Typography>
       <Typography
         sx={{
@@ -37,17 +37,17 @@ const ProductDesc = ({ product }) => {
           textOverflow: "ellipsis",
         }}
       >
-        {product.description}
+        {product?.description}
       </Typography>
       <Box sx={{ display: "flex", gap: "1rem", mt: ".5rem" }}>
         <Box sx={{ display: "flex" }}>
-          <Rating name="read-only" value={product.rating} readOnly />
-          <Typography>{product.rating}</Typography>
+          <Rating name="read-only" value={product?.rating} readOnly />
+          <Typography>{product?.rating}</Typography>
         </Box>
         <Box sx={{ display: "flex" }}>
           <CommentIcon sx={{ color: "#FABA10" }} />
           <Typography sx={{ color: "#FABA10" }}>
-            {product.reviews.length}
+            {product?.reviews?.length}
           </Typography>
         </Box>
       </Box>
@@ -73,7 +73,7 @@ const ProductDesc = ({ product }) => {
           component="div"
           sx={{ color: "gray", textDecoration: "line-through" }}
         >
-          ${product.price}
+          ${product?.price}
         </Typography>
       </Box>
 

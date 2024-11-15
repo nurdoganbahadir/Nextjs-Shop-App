@@ -35,7 +35,7 @@ export default function ProductAccordion({ product }) {
         </AccordionSummary>
         <AccordionDetails>
           <Box>
-            {review.map((review, index) => (
+            {review?.map((review, index) => (
               <ProductReviews key={index} review={review} />
             ))}
           </Box>

@@ -13,6 +13,10 @@ export default function ProductImage({ images }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = images?.length;
 
+  if (!images || images.length === 0) {
+    return <p>Image not available</p>;
+  }
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -27,7 +31,7 @@ export default function ProductImage({ images }) {
         <CardMedia
           component="img"
           alt="image"
-          image={images[activeStep]}
+          image={images[activeStep] || images[0]}
           sx={{
             height: 400,
             maxWidth: 600,

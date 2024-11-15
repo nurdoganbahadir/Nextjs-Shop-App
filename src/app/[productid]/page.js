@@ -3,12 +3,19 @@ import ProductDetail from "@/components/ProductDetail/ProductDetail";
 
 export async function generateMetadata({ params }) {
   const { productId } = await params;
+
   const product = await getSingleProduct(productId);
+
+  if (!product || !product.images || product.images.length === 0) {
+    return {
+      title: "Product Not Found",
+      description: "This product information cannot be accessed.",
+    };
+  }
 
   return {
     title: product.title,
     description: product.description,
-    keywords: ["product", "details", "e-commerce", product.title],
     openGraph: {
       title: product.title,
       description: product.description,
@@ -20,12 +27,6 @@ export async function generateMetadata({ params }) {
           alt: product.title,
         },
       ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: product.title,
-      description: product.description,
-      image: product.images[0],
     },
   };
 }
