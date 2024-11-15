@@ -60,15 +60,21 @@ Shop App bir e-ticaret sitesinin demosudur. Ürünleri ana sayfada görüntüley
   
 
 
-# How to install
+# Nasıl Yüklenir
 
-In the project directory, open the terminal and run:
+İlk olarak projeyi GitHub'dan bilgisayarınıza klonlayın. Bunun için terminale aşağıdaki komutu yazabilirsiniz:
+
+### `https://github.com/nurdoganbahadir/Nextjs-Shop-App.git`
+
+Proje klasörüne girdikten sonra, gerekli tüm bağımlılıkları yüklemek için terminalde aşağıdaki komutu çalıştırın:
 
 ### `npm install`
 
-This will install the necessary dependencies. After that, you can run:
+Yüklemeyi tamamladıktan sonra projeyi çalıştırmak için aşağıdaki komutu kullanabilirsiniz:
 
 ### `npm run dev`
+
+Proje başarıyla çalıştıysa, tarayıcınızda http://localhost:3000 adresine giderek uygulamanızı görüntüleyebilirsiniz.
 
 
 
