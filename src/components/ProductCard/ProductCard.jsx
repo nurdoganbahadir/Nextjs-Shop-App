@@ -34,6 +34,7 @@ const ProductCard = ({ product }) => {
         alt="Porsche"
         height="200"
         image={product.images[0]}
+        sx={{ objectFit: "contain" }}
       />
       <CardContent sx={{ minHeight: "100px" }}>
         <Typography variant="p" sx={{ color: "gray", fontSize: "13px" }}>

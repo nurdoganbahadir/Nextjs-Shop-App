@@ -12,7 +12,6 @@ import {
   Container,
   Skeleton,
 } from "@mui/material";
-import ProductCard from "./ProductCard";
 import ProductArrangement from "../ProductDetail/ProductArrangement";
 import ProductCategories from "./ProductCategories";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -30,6 +29,7 @@ const ProductList = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
 
   const router = useRouter();
+  
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || 1;
   const limit = searchParams.get("limit") || 200;
