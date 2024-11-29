@@ -2,7 +2,7 @@
 const BASE_URL = process.env.BASE_URL;
 
 export const getAllProducts = async (page, limit, search) => {
-  let url = `${BASE_URL}/`;
+  let url = `https://dummyjson.com/products/`;
   const params = new URLSearchParams();
 
   if (page) params.append("page", page);
@@ -33,7 +33,7 @@ export const getAllProducts = async (page, limit, search) => {
 
 export const getSingleProduct = async (id) => {
   try {
-    const res = await fetch(`${BASE_URL}/${id}`, {
+    const res = await fetch(`https://dummyjson.com/products/${id}`, {
       ContentType: "aplication/json",
       method: "GET",
     });
